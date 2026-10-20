@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo Gerencial — Conectividade Rural e Agricultura Digital | Bahia</title>
+<style>
+  :root{
+    --verde:#0f8a4d; --verde-claro:#3fc07c; --azul:#0b5fa5; --azul-claro:#2f9bd9;
+    --laranja:#f07d1a; --amarelo:#f5c024; --vermelho:#d93b3b; --roxo:#6a3fa0;
+    --cinza:#4a5560; --cinza-claro:#f4f7f9; --branco:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',Tahoma,Verdana,sans-serif;
+    background:linear-gradient(135deg,#eef4f8 0%,#f7fbf8 100%);
+    color:var(--cinza); line-height:1.6; padding:24px;
+  }
+  .wrap{max-width:1180px;margin:0 auto}
+
+  header{
+    background:linear-gradient(120deg,#0f8a4d 0%,#13a05c 45%,#0b5fa5 100%);
+    color:#fff;border-radius:18px;padding:38px 34px;
+    box-shadow:0 12px 30px rgba(11,95,165,.25);position:relative;overflow:hidden;
+  }
+  header::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;
+    background:rgba(255,255,255,.10);border-radius:50%;
+  }
+  header .tag{
+    display:inline-block;background:rgba(255,255,255,.22);padding:5px 14px;
+    border-radius:20px;font-size:.78rem;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;
+  }
+  header h1{font-size:2.05rem;margin:14px 0 8px;line-height:1.2}
+  header p{font-size:1rem;opacity:.95;max-width:830px}
+  header .meta{margin-top:16px;font-size:.84rem;opacity:.9}
+
+  h2.sec{
+    font-size:1.32rem;color:#12314a;margin:42px 0 18px;padding-left:14px;
+    border-left:7px solid var(--verde);display:flex;align-items:center;gap:10px;
+  }
+  h2.sec.azul{border-color:var(--azul)}
+  h2.sec.laranja{border-color:var(--laranja)}
+  h2.sec.roxo{border-color:var(--roxo)}
+  h2.sec.vermelho{border-color:var(--vermelho)}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:16px}
+  .kpi{
+    background:#fff;border-radius:14px;padding:20px 18px;border-top:6px solid var(--azul);
+    box-shadow:0 5px 16px rgba(20,50,80,.09);transition:.25s;
+  }
+  .kpi:hover{transform:translateY(-5px);box-shadow:0 12px 26px rgba(20,50,80,.16)}
+  .kpi .num{font-size:2.05rem;font-weight:800;line-height:1.1}
+  .kpi .lbl{font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;font-weight:700;color:#8695a3;margin-top:6px}
+  .kpi .desc{font-size:.84rem;margin-top:8px;color:#5c6b78}
+  .k-red{border-top-color:var(--vermelho)} .k-red .num{color:var(--vermelho)}
+  .k-org{border-top-color:var(--laranja)} .k-org .num{color:var(--laranja)}
+  .k-grn{border-top-color:var(--verde)} .k-grn .num{color:var(--verde)}
+  .k-blu{border-top-color:var(--azul-claro)} .k-blu .num{color:var(--azul)}
+  .k-pur{border-top-color:var(--roxo)} .k-pur .num{color:var(--roxo)}
+  .k-yel{border-top-color:var(--amarelo)} .k-yel .num{color:#c99400}
+
+  .card{background:#fff;border-radius:14px;padding:24px;box-shadow:0 5px 16px rgba(20,50,80,.08)}
+  .card p + p{margin-top:12px}
+
+  .bars{display:flex;flex-direction:column;gap:16px;margin-top:6px}
+  .bar-row .bl{display:flex;justify-content:space-between;font-size:.9rem;font-weight:600;margin-bottom:6px}
+  .track{background:#e6edf2;border-radius:10px;height:22px;overflow:hidden}
+  .fill{height:100%;border-radius:10px;color:#fff;font-size:.76rem;font-weight:700;
+        display:flex;align-items:center;justify-content:flex-end;padding-right:9px}
+  .f1{width:27.5%;background:linear-gradient(90deg,#d93b3b,#f07d1a)}
+  .f2{width:24.15%;background:linear-gradient(90deg,#d93b3b,#f5a623)}
+  .f3{width:28.18%;background:linear-gradient(90deg,#0b5fa5,#2f9bd9)}
+  .f4{width:80.2%;background:linear-gradient(90deg,#0f8a4d,#3fc07c)}
+  .f5{width:5.2%;background:linear-gradient(90deg,#d93b3b,#e2574c);min-width:48px}
+  .f6{width:50.4%;background:linear-gradient(90deg,#f07d1a,#f5c024)}
+
+  .swot{display:grid;grid-template-columns:repeat(auto-fit,minmax(265px,1fr));gap:16px}
+  .sw{border-radius:14px;padding:20px;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+  .sw h3{font-size:1.02rem;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;
+         border-bottom:2px solid rgba(255,255,255,.35);padding-bottom:7px}
+  .sw ul{list-style:none} .sw li{font-size:.88rem;padding:6px 0 6px 20px;position:relative}
+  .sw li::before{content:"▸";position:absolute;left:0;font-weight:800}
+  .s-f{background:linear-gradient(140deg,#0f8a4d,#3fc07c)}
+  .s-w{background:linear-gradient(140deg,#c0392b,#e2574c)}
+  .s-o{background:linear-gradient(140deg,#0b5fa5,#2f9bd9)}
+  .s-a{background:linear-gradient(140deg,#6a3fa0,#9b6fd1)}
+
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;
+        box-shadow:0 5px 16px rgba(20,50,80,.09);font-size:.89rem}
+  thead th{background:linear-gradient(90deg,#0b5fa5,#2f9bd9);color:#fff;padding:13px 12px;text-align:left;
+           font-size:.8rem;text-transform:uppercase;letter-spacing:.7px}
+  tbody td{padding:12px;border-bottom:1px solid #eaf0f4;vertical-align:top}
+  tbody tr:nth-child(even){background:#fafcfd}
+  tbody tr:hover{background:#eef7f1}
+  .pill{display:inline-block;padding:3px 11px;border-radius:14px;font-size:.73rem;font-weight:800;color:#fff;white-space:nowrap}
+  .p-alta{background:var(--vermelho)} .p-media{background:var(--laranja)} .p-cont{background:var(--verde)}
+  .p-cp{background:var(--azul-claro)} .p-mp{background:var(--roxo)} .p-lp{background:#607d8b}
+
+  .eixos{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+  .eixo{background:#fff;border-radius:14px;padding:22px;box-shadow:0 5px 16px rgba(20,50,80,.08);
+        border-left:7px solid var(--verde);position:relative}
+  .eixo .n{position:absolute;top:16px;right:18px;font-size:2.4rem;font-weight:800;color:#eef2f5;line-height:1}
+  .eixo h3{font-size:1.02rem;color:#12314a;margin-bottom:10px;padding-right:40px}
+  .eixo ul{list-style:none;margin-top:8px}
+  .eixo li{font-size:.87rem;padding:5px 0 5px 18px;position:relative}
+  .eixo li::before{content:"●";position:absolute;left:0;font-size:.6rem;top:11px;color:var(--verde)}
+  .e2{border-left-color:var(--azul)} .e2 li::before{color:var(--azul)}
+  .e3{border-left-color:var(--laranja)} .e3 li::before{color:var(--laranja)}
+  .e4{border-left-color:var(--roxo)} .e4 li::before{color:var(--roxo)}
+  .e5{border-left-color:var(--amarelo)} .e5 li::before{color:#c99400}
+  .e6{border-left-color:var(--vermelho)} .e6 li::before{color:var(--vermelho)}
+
+  .road{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:6px}
+  .fase{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 5px 16px rgba(20,50,80,.09)}
+  .fase .top{padding:14px 18px;color:#fff;font-weight:800;font-size:.95rem}
+  .fase .body{padding:16px 18px;font-size:.86rem}
+  .fase ul{list-style:none} .fase li{padding:5px 0 5px 16px;position:relative}
+  .fase li::before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:800}
+  .t1{background:linear-gradient(90deg,#0f8a4d,#3fc07c)}
+  .t2{background:linear-gradient(90deg,#0b5fa5,#2f9bd9)}
+  .t3{background:linear-gradient(90deg,#f07d1a,#f5c024)}
+  .t4{background:linear-gradient(90deg,#6a3fa0,#9b6fd1)}
+
+  .alert{background:linear-gradient(100deg,#fff6e8,#fffdf6);border-left:7px solid var(--laranja);
+         border-radius:12px;padding:20px 22px;margin-top:18px}
+  .alert strong{color:#b35c00}
+  .ok{background:linear-gradient(100deg,#eaf8f0,#f7fdfa);border-left:7px solid var(--verde);
+      border-radius:12px;padding:20px 22px;margin-top:18px}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:#fff;border:2px solid var(--verde-claro);color:#0b6b3c;border-radius:20px;
+        padding:6px 14px;font-size:.81rem;font-weight:700}
+  .chip.b{border-color:var(--azul-claro);color:var(--azul)}
+  .chip.o{border-color:var(--laranja);color:#b35c00}
+  .chip.p{border-color:#9b6fd1;color:var(--roxo)}
+
+  footer{margin-top:46px;padding:22px;text-align:center;font-size:.8rem;color:#7a8893;
+         background:#fff;border-radius:14px;box-shadow:0 5px 16px rgba(20,50,80,.07)}
+  @media print{body{background:#fff;padding:0}.kpi:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="tag">Resumo Gerencial • Eixo Temático</span>
+  <h1>Conectividade Rural e Agricultura Digital no Estado da Bahia</h1>
+  <p>Síntese executiva do Diagnóstico Estadual de Inovação Agropecuária, com leitura crítica do cenário atual,
+     identificação de gargalos e proposição de melhorias e ações estratégicas para a transição da Bahia
+     rumo à Agricultura 4.0 e 5.0.</p>
+  <div class="meta">
+    Fonte: Diagnóstico Estadual de Inovação Agropecuária da Bahia — Comitê Estadual de Inovação Agropecuária (SFA-BA) · set/2026
+    &nbsp;|&nbsp; Dados: IBGE/Censo Agropecuário, Anatel (2025), MapBiomas, ConectarAgro (2025), SECTI, SEAGRI
+  </div>
+</header>
+
+<!-- ================= PANORAMA ================= -->
+<h2 class="sec">📊 Panorama em Números</h2>
+<div class="kpis">
+  <div class="kpi k-red">
+    <div class="num">72,5%</div>
+    <div class="lbl">Área agricultável sem cobertura</div>
+    <div class="desc">Apenas 1,37 milhão de hectares atendidos frente à área agricultável mapeada do estado.</div>
+  </div>
+  <div class="kpi k-org">
+    <div class="num">24,15%</div>
+    <div class="lbl">Estabelecimentos com internet</div>
+    <div class="desc">184.267 de 762.848 estabelecimentos agropecuários possuem acesso à rede.</div>
+  </div>
+  <div class="kpi k-blu">
+    <div class="num">0,361</div>
+    <div class="lbl">Índice de Conectividade Rural</div>
+    <div class="desc">15% abaixo da média nacional (0,45), segundo o ConectarAgro (2025).</div>
+  </div>
+  <div class="kpi k-grn">
+    <div class="num">377</div>
+    <div class="lbl">Municípios no Conecta Bahia</div>
+    <div class="desc">Média de 2,37 pontos por município (mar–jun/2026); política instituída pelo Decreto nº 24.419/2026.</div>
+  </div>
+  <div class="kpi k-pur">
+    <div class="num">5,2%</div>
+    <div class="lbl">Cobertura de ATER</div>
+    <div class="desc">55,8 mil de 665.831 agricultores familiares atendidos; meta estadual de 12%.</div>
+  </div>
+  <div class="kpi k-yel">
+    <div class="num">1º</div>
+    <div class="lbl">Conectividade no Nordeste</div>
+    <div class="desc">Bahia lidera a região (21,78% da média regional), mas abaixo da média de 28,18% de outros estados.</div>
+  </div>
+</div>
+
+<h2 class="sec azul">📈 Leitura Comparada dos Indicadores</h2>
+<div class="card">
+  <div class="bars">
+    <div class="bar-row">
+      <div class="bl"><span>Cobertura de internet sobre a área agricultável da Bahia</span><span style="color:#d93b3b">27,5%</span></div>
+      <div class="track"><div class="fill f1">27,5%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bl"><span>Estabelecimentos agropecuários baianos conectados</span><span style="color:#d93b3b">24,15%</span></div>
+      <div class="track"><div class="fill f2">24,15%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bl"><span>Média de estabelecimentos conectados em outros estados</span><span style="color:#0b5fa5">28,18%</span></div>
+      <div class="track"><div class="fill f3">28,18%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bl"><span>ICR Bahia (0,361) em relação à média nacional (0,45)</span><span style="color:#0f8a4d">80,2%</span></div>
+      <div class="track"><div class="fill f4">80,2% da média</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bl"><span>Agricultores familiares com assistência técnica (ATER)</span><span style="color:#d93b3b">5,2%</span></div>
+      <div class="track"><div class="fill f5">5,2%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bl"><span>Capacidade de armazenagem frente à safra 2026 (fator correlato)</span><span style="color:#f07d1a">50,4%</span></div>
+      <div class="track"><div class="fill f6">50,4%</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DIAGNÓSTICO ================= -->
+<h2 class="sec laranja">🔍 Síntese do Diagnóstico</h2>
+<div class="card">
+  <p>O diagnóstico revela um <strong>paradoxo estrutural</strong>: a Bahia é simultaneamente a maior produtora de grãos
+  do Nordeste e líder regional em conectividade no campo, mas convive com um déficit digital que inviabiliza a
+  adoção plena de tecnologias em quase três quartos de seu território agricultável. A insuficiência decorre da baixa
+  penetração de fibra ótica no meio rural, de extensas áreas sem cobertura 4G e 5G, da instabilidade de sinal e da
+  dependência de redes móveis legadas de baixa velocidade.</p>
+
+  <p>Essa limitação atua como <strong>gargalo transversal</strong>: compromete a coleta massiva de dados em tempo real,
+  a rastreabilidade exigida por mercados internacionais, a automação de máquinas, o uso de drones e sensores, a gestão
+  em nuvem e a assistência técnica remota. Ferramentas já disponíveis — como o SIGATER, o aplicativo COLETUM, o chatbot
+  "Zap do Cacau" e a plataforma CacauTrace — têm sua efetividade reduzida justamente onde mais seriam necessárias.</p>
+
+  <p>Há ainda uma <strong>assimetria territorial acentuada</strong>. Polos tecnificados como Luís Eduardo Magalhães
+  evoluíram o ICR de 0,288 (2024) para 0,342 (2025), impulsionados por investimento privado em operacionalização
+  digital, enquanto o Semiárido e a agricultura familiar permanecem digitalmente isolados. Sobrepõe-se a isso a
+  concentração dos ativos de inovação na Região Metropolitana de Salvador, distante dos polos produtivos, o que
+  dificulta a validação de tecnologias em campo e estimula a evasão de AgTechs para ecossistemas mais maduros.</p>
+
+  <div class="ok">
+    <strong>Avanço institucional relevante:</strong> o Programa Conecta Bahia, criado em 2020 pela SECTI e
+    institucionalizado como política pública estadual pelo Decreto nº 24.419/2026, integra o PPA 2024–2027 e
+    combina links terrestres e satelitais com priorização de áreas remotas, comunidades tradicionais e populações
+    vulneráveis — já alcançando 377 municípios.
+  </div>
+
+  <div class="alert">
+    <strong>Ponto de atenção:</strong> a densidade média de 2,37 pontos por município é adequada para inclusão digital
+    comunitária, porém <em>insuficiente para uso produtivo em escala de propriedade rural</em>. O desenho atual
+    atende à cidadania digital, mas não à conectividade de máquina, de talhão e de cadeia produtiva.
+  </div>
+</div>
+
+<!-- ================= SWOT ================= -->
+<h2 class="sec roxo">🧭 Matriz SWOT — Recorte Digital</h2>
+<div class="swot">
+  <div class="sw s-f">
+    <h3>Forças</h3>
+    <ul>
+      <li>Polos de Agricultura 4.0 consolidados no Oeste Baiano e Vale do São Francisco</li>
+      <li>Liderança em conectividade rural no Nordeste</li>
+      <li>Rede robusta de 5 universidades federais, 4 estaduais, IFBA/IF Baiano, Embrapa e SENAI CIMATEC</li>
+      <li>Ambientes de inovação dedicados ao agro: Semear Hub, Agri.future, Parque Tecnológico da Bahia, CIMATEC Park</li>
+      <li>Casos de sucesso em IA e rastreabilidade na cadeia do cacau (MTILab, CBG, blockchain)</li>
+      <li>Política estadual de conectividade já institucionalizada por decreto</li>
+    </ul>
+  </div>
+  <div class="sw s-w">
+    <h3>Fraquezas</h3>
+    <ul>
+      <li>72,5% da área agricultável sem cobertura de internet</li>
+      <li>ICR 15% abaixo da média nacional</li>
+      <li>Baixa capilaridade de fibra ótica e vazios de 4G/5G no interior</li>
+      <li>ATER alcança apenas 5,2% dos agricultores familiares</li>
+      <li>Exclusão tecnológica de pequenos e médios produtores</li>
+      <li>Ativos de inovação concentrados na RMS, distantes do campo</li>
+      <li>Ecossistema fragmentado, com ações individualizadas e pouca integração</li>
+    </ul>
+  </div>
+  <div class="sw s-o">
+    <h3>Oportunidades</h3>
+    <ul>
+      <li>Expansão de AgTechs e soluções em IA, IoT e robótica (Umipi DITAg — CIMATEC/Embrapa)</li>
+      <li>Demanda global por rastreabilidade e conformidade ESG</li>
+      <li>Conectividade satelital de baixa órbita como alternativa de rápida implantação</li>
+      <li>Compartilhamento de infraestrutura com redes de energia, rodovias e ferrovia FIOL</li>
+      <li>Bioeconomia e economia circular como vetores da Agricultura 5.0</li>
+      <li>Mercados internacionais exigentes como indutores de modernização</li>
+    </ul>
+  </div>
+  <div class="sw s-a">
+    <h3>Ameaças</h3>
+    <ul>
+      <li>Evasão de startups e talentos para ecossistemas mais maduros (SP, SC, PR)</li>
+      <li>Aprofundamento do fosso digital entre grande produtor e agricultura familiar</li>
+      <li>Complexidade regulatória e insegurança jurídica para novas tecnologias</li>
+      <li>Descontinuidade orçamentária em PD&I, ATER e conectividade</li>
+      <li>Mudanças climáticas exigindo resposta tecnológica que a infraestrutura não suporta</li>
+      <li>Perda de competitividade frente a estados com campo plenamente conectado</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= EIXOS PROPOSITIVOS ================= -->
+<h2 class="sec">🚀 Eixos Estratégicos Propostos</h2>
+<div class="eixos">
+  <div class="eixo">
+    <div class="n">01</div>
+    <h3>Infraestrutura Digital Produtiva</h3>
+    <ul>
+      <li>Evoluir o Conecta Bahia de um modelo de pontos comunitários para um modelo de <em>cobertura de área produtiva</em>, com meta de hectares conectados</li>
+      <li>Plano Estadual de Backbone Rural, com capilarização de fibra a partir de rodovias, linhas de transmissão e do traçado da FIOL</li>
+      <li>Contratação de capacidade satelital de baixa órbita para o Semiárido e áreas de difícil acesso</li>
+      <li>Incentivo fiscal e leilão estadual de contrapartidas para operadoras que cobrirem vazios de 4G/5G</li>
+      <li>Redes privativas (LoRaWAN, 4G/5G corporativo) em condomínios de armazéns e perímetros irrigados</li>
+    </ul>
+  </div>
+  <div class="eixo e2">
+    <div class="n">02</div>
+    <h3>Governança e Integração do Ecossistema</h3>
+    <ul>
+      <li>Instituir câmara técnica permanente de Conectividade e Agricultura Digital no Comitê Estadual de Inovação Agropecuária</li>
+      <li>Pacto estadual SECTI–SEAGRI–SEINFRA–Anatel–operadoras–FAEB/SENAR–Embrapa com metas pactuadas</li>
+      <li>Observatório Estadual da Conectividade Rural, com painel público de ICR por município e território de identidade</li>
+      <li>Integração das bases de SIGATER, COLETUM, CETAB e Portal da Agropecuária em plataforma única de dados</li>
+      <li>Alinhamento com o futuro Plano Estratégico Estadual de Inovação Agropecuária</li>
+    </ul>
+  </div>
+  <div class="eixo e3">
+    <div class="n">03</div>
+    <h3>Interiorização da Inovação</h3>
+    <ul>
+      <li>Rede de <em>Living Labs</em> e campos de prova nos polos produtivos: Oeste, Vale do São Francisco, Sul e Sudoeste</li>
+      <li>Descentralizar ativos hoje concentrados na RMS, ancorando-os em UFOB, UNIVASF, UESC, UESB e UEFS</li>
+      <li>Fortalecer os Ecossistemas Locais de Inovação já mapeados (Barreiras, LEM, Ilhéus, Vitória da Conquista, Alagoinhas, Entre Rios, Feira de Santana)</li>
+      <li>Programa de retenção de AgTechs com capital semente estadual e compras públicas de inovação</li>
+      <li>Expandir o modelo do Semear Hub e do Agri.future para novos territórios</li>
+    </ul>
+  </div>
+  <div class="eixo e4">
+    <div class="n">04</div>
+    <h3>ATER Digital e Capital Humano</h3>
+    <ul>
+      <li>Programa ATER 4.0 para elevar a cobertura de 5,2% para a meta de 12%, com atendimento híbrido presencial e remoto</li>
+      <li>Escalar soluções validadas — SIGATER, COLETUM, Zap do Cacau, CacauTrace — para outras cadeias</li>
+      <li>Trilhas de letramento digital para produtores, cooperativas e jovens rurais, ampliando o Caminho Digital</li>
+      <li>Formação continuada de extensionistas em dados, geotecnologias e IA aplicada</li>
+      <li>Conectividade prioritária em escolas rurais, casas familiares rurais e unidades de ATER</li>
+    </ul>
+  </div>
+  <div class="eixo e5">
+    <div class="n">05</div>
+    <h3>Inclusão Digital da Agricultura Familiar</h3>
+    <ul>
+      <li>Linha específica de crédito digital (PRONAF/PRONAMP) para conectividade, sensores e equipamentos</li>
+      <li>Conectividade compartilhada em agroindústrias familiares, associações e cooperativas</li>
+      <li>Rastreabilidade simplificada e de baixo custo para acesso a mercados institucionais e certificações</li>
+      <li>Plataformas de comercialização digital direta, reduzindo intermediação</li>
+      <li>Priorização territorial para Semiárido, comunidades tradicionais e territórios de menor ICR</li>
+    </ul>
+  </div>
+  <div class="eixo e6">
+    <div class="n">06</div>
+    <h3>Ambiente Regulatório e Financiamento</h3>
+    <ul>
+      <li>Implantar <em>sandbox regulatório</em> estadual para testagem de tecnologias agro em ambiente controlado</li>
+      <li>Simplificar licenciamento e desburocratizar a instalação de infraestrutura de telecomunicações no meio rural</li>
+      <li>Ampliar editais FAPESB direcionados a conectividade, IA e agricultura digital</li>
+      <li>Estruturar parcerias público-privadas e captação junto a Banco Mundial, BNDES e Banco do Nordeste</li>
+      <li>Vincular contrapartidas de conectividade a incentivos fiscais concedidos ao agronegócio</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= PLANO DE AÇÃO ================= -->
+<h2 class="sec azul">🗂️ Plano de Ação Prioritário</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width:26%">Ação Estratégica</th>
+      <th style="width:19%">Resultado Esperado</th>
+      <th style="width:12%">Prioridade</th>
+      <th style="width:12%">Horizonte</th>
+      <th style="width:31%">Atores Envolvidos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mapa Digital da Conectividade Rural</strong> — georreferenciamento dos vazios de cobertura cruzando Anatel, MapBiomas e cadastro de estabelecimentos</td>
+      <td>Base única para priorizar investimentos e monitorar o ICR municipal</td>
+      <td><span class="pill p-alta">Alta</span></td>
+      <td><span class="pill p-cp">Curto</span></td>
+      <td>SECTI, SEAGRI, Anatel, universidades estaduais</td>
+    </tr>
+    <tr>
+      <td><strong>Conecta Bahia Produtivo</strong> — nova vertente do programa com meta em hectares conectados e não apenas em pontos</td>
+      <td>Redução progressiva do gap de 72,5% da área agricultável</td>
+      <td><span class="pill p-alta">Alta</span></td>
+      <td><span class="pill p-cp">Curto</span></td>
+      <td>SECTI, SEINFRA, operadoras, cooperativas</td>
+    </tr>
+    <tr>
+      <td><strong>Câmara Técnica de Conectividade e Agricultura Digital</strong> no Comitê Estadual</td>
+      <td>Governança integrada e fim da atuação fragmentada</td>
+      <td><span class="pill p-alta">Alta</span></td>
+      <td><span class="pill p-cp">Curto</span></td>
+      <td>Comitê Estadual, SFA-BA, SEAGRI, FAEB/SENAR</td>
+    </tr>
+    <tr>
+      <td><strong>Programa ATER 4.0</strong> — expansão da assistência técnica com suporte digital e uso intensivo de SIGATER/COLETUM</td>
+      <td>Cobertura de ATER de 5,2% para 12% dos agricultores familiares</td>
+      <td><span class="pill p-alta">Alta</span></td>
+      <td><span class="pill p-mp">Médio</span></td>
+      <td>Bahiater, SENAR, UFRB, CAR</td>
+    </tr>
+    <tr>
+      <td><strong>Rede de Living Labs e campos de prova</strong> nos polos produtivos regionais</td>
+      <td>Validação de tecnologias em campo (TRL 5–8) e retenção de AgTechs</td>
+      <td><span class="pill p-media">Média</span></td>
+      <td><span class="pill p-mp">Médio</span></td>
+      <td>Embrapa, SENAI CIMATEC, UFOB, UNIVASF, UESC, Semear Hub</td>
+    </tr>
+    <tr>
+      <td><strong>Backbone de fibra rural</strong> ancorado em rodovias, linhas de transmissão e no eixo da FIOL</td>
+      <td>Capilaridade estrutural e redução do custo de última milha</td>
+      <td><span class="pill p-alta">Alta</span></td>
+      <td><span class="pill p-lp">Longo</span></td>
+      <td>SEINFRA, SECTI, concessionárias, iniciativa privada</td>
+    </tr>
+    <tr>
+      <td><strong>Conectividade satelital para o Semiárido</strong> e comunidades tradicionais</td>
+      <td>Inclusão digital de territórios historicamente desassistidos</td>
+      <td><span class="pill p-alta">Alta</span></td>
+      <td><span class="pill p-cp">Curto</span></td>
+      <td>SECTI, CAR, consórcios municipais</td>
+    </tr>
+    <tr>
+      <td><strong>Sandbox regulatório agro</strong> e simplificação de licenciamento de infraestrutura</td>
+      <td>Aceleração da adoção tecnológica e segurança jurídica</td>
+      <td><span class="pill p-media">Média</span></td>
+      <td><span class="pill p-mp">Médio</span></td>
+      <td>Governo do Estado, FAPESB, SEBRAE, setor privado</td>
+    </tr>
+    <tr>
+      <td><strong>Linha de crédito para digitalização rural</strong> via PRONAF, PRONAMP e fundos estaduais</td>
+      <td>Viabilização econômica da adoção tecnológica pelo pequeno produtor</td>
+      <td><span class="pill p-media">Média</span></td>
+      <td><span class="pill p-mp">Médio</span></td>
+      <td>Banco do Nordeste, Desenbahia, BNDES, SEAGRI</td>
+    </tr>
+    <tr>
+      <td><strong>Observatório e painel público do ICR</strong> com atualização periódica</td>
+      <td>Transparência, accountability e correção de rota das políticas</td>
+      <td><span class="pill p-cont">Contínua</span></td>
+      <td><span class="pill p-cp">Curto</span></td>
+      <td>SECTI, SEI, universidades, Comitê Estadual</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ================= ROADMAP ================= -->
+<h2 class="sec roxo">🧩 Roteiro de Implementação</h2>
+<div class="road">
+  <div class="fase">
+    <div class="top t1">Fase 1 — Estruturar</div>
+    <div class="body">
+      <ul>
+        <li>Mapa digital dos vazios de cobertura</li>
+        <li>Câmara técnica instalada</li>
+        <li>Pacto estadual firmado</li>
+        <li>Linha de base do ICR publicada</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fase">
+    <div class="top t2">Fase 2 — Conectar</div>
+    <div class="body">
+      <ul>
+        <li>Expansão satelital no Semiárido</li>
+        <li>Conecta Bahia Produtivo em operação</li>
+        <li>Conectividade em escolas e unidades de ATER</li>
+        <li>Redes privativas em perímetros irrigados</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fase">
+    <div class="top t3">Fase 3 — Capacitar</div>
+    <div class="body">
+      <ul>
+        <li>ATER 4.0 em escala estadual</li>
+        <li>Letramento digital de produtores</li>
+        <li>Living Labs regionais ativos</li>
+        <li>Crédito para digitalização disponível</li>
+      </ul>
+    </div>
+  </div>
+  <div class="fase">
+    <div class="top t4">Fase 4 — Escalar</div>
+    <div class="body">
+      <ul>
+        <li>Backbone de fibra rural consolidado</li>
+        <li>Rastreabilidade nas principais cadeias</li>
+        <li>Sandbox regulatório em operação</li>
+        <li>ICR baiano acima da média nacional</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ================= INDICADORES ================= -->
+<h2 class="sec vermelho">🎯 Indicadores Sugeridos de Monitoramento</h2>
+<div class="card">
+  <p>Para que o Plano Estratégico Estadual de Inovação Agropecuária possa aferir resultados, sugere-se o
+  acompanhamento sistemático de um conjunto enxuto de indicadores, com linha de base já estabelecida neste
+  diagnóstico e revisão anual pelo Comitê Estadual:</p>
+  <div class="chips">
+    <span class="chip">ICR estadual e por município</span>
+    <span class="chip b">% de hectares agricultáveis cobertos</span>
+    <span class="chip o">% de estabelecimentos com internet</span>
+    <span class="chip p">% de agricultores familiares em ATER</span>
+    <span class="chip">Nº de pontos ativos do Conecta Bahia</span>
+    <span class="chip b">Nº de AgTechs ativas e retidas no estado</span>
+    <span class="chip o">Volume de produção rastreada digitalmente</span>
+    <span class="chip p">Nº de produtores capacitados digitalmente</span>
+    <span class="chip">Investimento público e privado em conectividade rural</span>
+    <span class="chip b">Nº de tecnologias validadas em campo</span>
+  </div>
+</div>
+
+<!-- ================= CONCLUSÃO ================= -->
+<h2 class="sec">✅ Conclusão Gerencial</h2>
+<div class="card">
+  <p>A conectividade rural configura-se como o <strong>principal fator limitante</strong> da transição digital da
+  agropecuária baiana. Não se trata de uma pauta setorial de telecomunicações, mas de uma condição habilitadora
+  para rastreabilidade, produtividade, sustentabilidade, conformidade ESG e acesso a mercados internacionais
+  cada vez mais exigentes.</p>
+
+  <p>A Bahia reúne condições singulares para superar esse gargalo: possui base científica consolidada, polos
+  produtivos de classe mundial, ambientes de inovação dedicados ao agro, matriz elétrica predominantemente
+  renovável e uma política estadual de conectividade já institucionalizada por decreto. O desafio central é de
+  <strong>escala, coordenação e priorização territorial</strong> — transformar iniciativas hoje dispersas em uma
+  estratégia única, mensurável e orçamentariamente sustentada.</p>
+
+  <p>Caso a lacuna de 72,5% da área agricultável sem cobertura não seja enfrentada de forma estruturada, o estado
+  tende a consolidar uma agropecuária de duas velocidades: um Oeste e um Vale do São Francisco plenamente
+  digitalizados e competitivos globalmente, e um Semiárido e uma agricultura familiar progressivamente excluídos
+  da economia dos dados. Reduzir essa assimetria é, simultaneamente, uma agenda de competitividade econômica
+  e de justiça territorial.</p>
+</div>
+
+<footer>
+  Documento elaborado como resumo gerencial a partir do <strong>Diagnóstico Estadual de Inovação Agropecuária do Estado da Bahia</strong>
+  (Comitê Estadual de Inovação Agropecuária / SFA-BA, setembro de 2026).<br>
+  Os dados apresentados reproduzem o diagnóstico original; as propostas e ações estratégicas constituem recomendações
+  complementares para subsidiar o Plano Estratégico Estadual de Inovação Agropecuária.
+</footer>
+
+</div>
+</body>
+</html>
